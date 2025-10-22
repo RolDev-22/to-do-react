@@ -13,6 +13,7 @@ gestor.agregarTarea(
   new Tarea("Tarea 1", "Descripción 1", "normal", "pendiente")
 );
 gestor.agregarTarea(new Tarea("Tarea 2", "Descripción 2", "alta", "pendiente"));
+gestor.agregarTarea(new Tarea("Tarea 3", "Descripción 3", "alta", "pendiente"));
 
 function App() {
   const [tareas, setTareas] = useState(gestor.obtenerTareas());

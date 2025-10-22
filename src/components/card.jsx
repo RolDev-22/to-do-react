@@ -9,8 +9,10 @@ const Card = ({ tarea, onEliminar }) => {
       <p>{tarea.description}</p>
       <h5>Estado: {tarea.state}</h5>
       <div className="config">
-        <button>Editar</button>
-        <button onClick={onEliminar}>Eliminar</button>
+        <button className="styleBtn">Editar</button>
+        <button className="styleBtn" onClick={onEliminar}>
+          Eliminar
+        </button>
       </div>
     </div>
   );
