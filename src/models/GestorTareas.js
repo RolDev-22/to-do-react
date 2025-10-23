@@ -5,12 +5,6 @@ class GestorTareas {
     this.lista = [];
   }
 
-  cargarInicial() {
-    let tarea = new Tarea();
-    tarea.cargarTarea();
-    this.agregarTarea(tarea);
-  }
-
   agregarTarea(tarea) {
     if (tarea instanceof Tarea) {
       this.lista.push(tarea);
@@ -23,9 +17,16 @@ class GestorTareas {
     }
   }
 
+  updateTask(index, tarea) {
+    if (index >= 0 && index < this.lista.length) {
+      this.lista[index] = tarea;
+    }
+  }
+
   obtenerTareas() {
     return this.lista;
   }
 }
 
-export default GestorTareas;
+const gestor = new GestorTareas();
+export default gestor;

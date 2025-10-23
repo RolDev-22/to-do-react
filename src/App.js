@@ -3,31 +3,26 @@ import React, { useState } from "react";
 import Card from "./components/card";
 import FormTask from "./components/formTask";
 import GestorTareas from "./models/GestorTareas";
-import Tarea from "./models/Tarea.class";
-
-const gestor = new GestorTareas();
-
-gestor.cargarInicial();
-
-gestor.agregarTarea(
-  new Tarea("Tarea 1", "Descripción 1", "normal", "pendiente")
-);
-gestor.agregarTarea(new Tarea("Tarea 2", "Descripción 2", "alta", "pendiente"));
-gestor.agregarTarea(new Tarea("Tarea 3", "Descripción 3", "alta", "pendiente"));
 
 function App() {
-  const [tareas, setTareas] = useState(gestor.obtenerTareas());
-
+  const [tareas, setTareas] = useState(GestorTareas.obtenerTareas());
   const eliminarTarea = (index) => {
-    gestor.deleteTask(index);
-    setTareas([...gestor.obtenerTareas()]);
+    GestorTareas.deleteTask(index);
+    setTareas([...GestorTareas.obtenerTareas()]);
+  };
+
+  const actualizarTarea = (index, tarea) => {
+    GestorTareas.updateTask(index, tarea);
+    setTareas([...GestorTareas.obtenerTareas()]);
   };
 
   return (
     <div className="App">
       <h1 className="tittleMain">TODO - ADD - LIST</h1>
       <section className="containerForm">
-        <FormTask />
+        <FormTask
+          actualizarTareas={() => setTareas([...GestorTareas.obtenerTareas()])}
+        />
       </section>
 
       <section className="containerTask">
@@ -36,6 +31,7 @@ function App() {
             key={index}
             tarea={tarea}
             onEliminar={() => eliminarTarea(index)}
+            onActualizar={(tarea) => actualizarTarea(index, tarea)}
           />
         ))}
       </section>
